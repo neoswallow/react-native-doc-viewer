@@ -70,6 +70,11 @@ RCT_EXPORT_METHOD(openDoc:(NSArray *)array callback:(RCTResponseSenderBlock)call
             }
             if([fileNameOptional length] == 0) {
                 fileName = [fileNameFromURL stringByDeletingPathExtension];
+            } else {
+                NSString* extOnFileNameOptional = [fileNameOptional pathExtension];
+                if([extOnFileNameOptional isEqualToString:fileExt]){
+                    fileName = [fileNameOptional stringByDeletingPathExtension];
+                }
             }
             fileName = [NSString stringWithFormat:@"%@%@%@", fileName, @".", fileExt];
 
